@@ -5,6 +5,7 @@
   position: relative;
   background:#00008b;
   border-bottom: 8px solid #8B0000;
+  margin-bottom: 20px;
 }
 
 .hero::after {

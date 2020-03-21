@@ -1,14 +1,18 @@
 import React from "react";
+import Row from "./Row";
+import Col from "./Col";
 
 function EmployeeDetails(props) {
   console.log(props);
   return (
     <div className="text-center">
-      <img alt={props.img} className="img-fluid" src={props.img} style={{ margin: "0 auto" }} />
-      <h3>Name {props.name}</h3>
-      <h3>Phone {props.phone}</h3>
-      <h3>Email {props.email}</h3>
-      <h3>DOB {props.DOB}</h3>
+      <Row>
+      <Col size="md-1"><img alt={props.img} className="img-fluid" src={props.img} style={{ margin: "0 auto" }} /></Col>
+      <Col size="md-2"><h4>{props.name}</h4></Col>
+      <Col size="md-3"><h4>{props.phone}</h4></Col>
+      <Col size="md-3"><h4>{props.email}</h4></Col>
+      <Col size="md-3"><h4>{props.DOB.substring(0, 10)}</h4></Col>
+      </Row>
     </div>
   );
 }
