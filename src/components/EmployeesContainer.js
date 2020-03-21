@@ -9,15 +9,16 @@ import API from "../utils/API";
 class EmployeesContainer extends Component {
   state = {
     result: {},
+    employees: [],
     search: ""
   };
 
-  // When this component mounts, 
+  // When this component mounts,
   componentDidMount() {
-    API.getEmployees()
-    .then(res => {
-      this.setState({ result: res.data })
-      console.log(res.data)})
+    API.getEmployees().then(res => {
+      this.setState({ employees: res });
+      console.log(res.data);
+    });
   }
 
   searchEmployees = query => {
@@ -43,30 +44,22 @@ class EmployeesContainer extends Component {
   render() {
     return (
       <div>
-      <Container>
-        <Row>
-          <Col size="md-12">
-              {this.state.result.length ? (
-                this.result.map( employee => {
-                  <Card>
-                      <EmployeeDetails
-                        img={employee.picture.thumbnail}
-                        name={employee.name}
-                        phone={employee.phone}
-                        email={employee.email}
-                        DOB={employee.dob.date}
-                      />
-                  </Card>
-                })
-              ) : (
-                <h3>Displays 50? results if nothing has been searched for</h3>
-              )}
-          </Col>
-        </Row>
-      </Container>
+        <Container>
+          <Row>
+            <Col size="md-12">
+              {/* <Card>
+                <SearchResults
+                />
+              </Card>
+              ) : ( */}
+                <Card>
+                  {this.state.employees.map(employee => <EmployeeDetails key={employee.name} {...employee}/>)}
+                </Card>
+            </Col>
+          </Row>
+        </Container>
       </div>
-    );
-  }
-}
+    )}
+};
 
 export default EmployeesContainer;
