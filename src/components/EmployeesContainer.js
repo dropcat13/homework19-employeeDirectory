@@ -5,6 +5,7 @@ import Col from "./Col";
 import Card from "./Card";
 import EmployeeDetails from "./EmployeeDetails";
 import API from "../utils/API";
+import SearchForm from "./SearchForm";
 
 class EmployeesContainer extends Component {
   state = {
@@ -17,22 +18,16 @@ class EmployeesContainer extends Component {
   componentDidMount() {
     API.getEmployees().then(res => {
       this.setState({ employees: res });
-      console.log(res.data);
     });
   }
 
-  searchEmployees = query => {
-    API.search(query)
-      .then(res => this.setState({ result: res.data }))
-      .catch(err => console.log(err));
-  };
-
   handleInputChange = event => {
     const value = event.target.value;
-    const name = event.target.name;
-    this.setState({
-      [name]: value
-    });
+    const filteredEmployees = this.state.employees.filter(employee => employee.name === value);
+    console.log("filtered Employees:", filteredEmployees, value);
+    // this.setState({
+    //   "employees": filteredEmployees  
+    // });
   };
 
   // When the form is submitted, search the OMDB API for the value of `this.state.search`
@@ -45,13 +40,13 @@ class EmployeesContainer extends Component {
     return (
       <div>
         <Container>
+        <SearchForm
+      // value={this.state.search}
+      handleInputChange={this.handleInputChange}
+      // handleFormSubmit={this.handleFormSubmit}
+     />
           <Row>
             <Col size="md-12">
-              {/* <Card>
-                <SearchResults
-                />
-              </Card>
-              ) : ( */}
                 <Card>
                   <Row>
                     <Col size="md-1"><h5>Image</h5></Col>
