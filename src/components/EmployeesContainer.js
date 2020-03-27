@@ -6,6 +6,7 @@ import Card from "./Card";
 import EmployeeDetails from "./EmployeeDetails";
 import API from "../utils/API";
 import SearchForm from "./SearchForm";
+import "./style.css"; 
 
 class EmployeesContainer extends Component {
   state = {
@@ -22,15 +23,16 @@ class EmployeesContainer extends Component {
   }
 
   handleInputChange = event => {
-    const value = event.target.value;
-    const filteredEmployees = this.state.employees.filter(employee => employee.name === value);
-    console.log("filtered Employees:", filteredEmployees, value);
-    // this.setState({
-    //   "employees": filteredEmployees  
-    // });
+    const filter = event.target.value;
+    const filteredEmployees = this.state.employees.filter(employee => {
+      let values = Object.values(employee).join("").toLowerCase();
+      return values.indexOf(filter.toLowerCase()) !== -1; 
+    });
+    this.setState({
+      "employees": filteredEmployees  
+    });   
   };
 
-  // When the form is submitted, search the OMDB API for the value of `this.state.search`
   handleFormSubmit = event => {
     event.preventDefault();
     this.searchEmployees(this.state.search);
@@ -50,7 +52,7 @@ class EmployeesContainer extends Component {
                 <Card>
                   <Row>
                     <Col size="md-1"><h5>Image</h5></Col>
-                    <Col size="md-2"><h5>Name</h5></Col>
+                    <Col size="md-2"><h5><span className="pointer p-2"> Name</span></h5></Col>
                     <Col size="md-3"><h5>Phone</h5></Col>
                     <Col size="md-3"><h5>Email</h5></Col>
                     <Col size="md-3"><h5>DOB</h5></Col>
