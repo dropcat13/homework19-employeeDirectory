@@ -42,7 +42,6 @@
 }
 
 span:hover:after {
-  font-size: 80%;
-  content: "💎";
+  font-size: 120%;
   margin-right: 0;
 }

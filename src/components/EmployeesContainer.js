@@ -52,7 +52,7 @@ class EmployeesContainer extends Component {
                 <Card>
                   <Row>
                     <Col size="md-1"><h5>Image</h5></Col>
-                    <Col size="md-2"><h5><span className="pointer p-2"> Name</span></h5></Col>
+                    <Col size="md-2"><h5>Name  <span className="pointer p-2">💎</span></h5></Col>
                     <Col size="md-3"><h5>Phone</h5></Col>
                     <Col size="md-3"><h5>Email</h5></Col>
                     <Col size="md-3"><h5>DOB</h5></Col>
