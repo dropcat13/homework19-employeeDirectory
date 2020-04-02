@@ -36,7 +36,11 @@ class EmployeesContainer extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    this.searchEmployees(this.state.search);
+    console.log("got here")
+    const sortedEmployees = this.state.employees.sort();
+    this.setState({
+      "employees": sortedEmployees  
+    });  
   };
 
   render() {
