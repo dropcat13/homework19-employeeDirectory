@@ -22,8 +22,7 @@ function SearchForm(props) {
             />
             <br />
             <button className="btn btn-primary">
-            {/* <button onClick={props.handleFormSubmit} className="btn btn-primary"> */}
-              Search
+              Reset
             </button>
           </div>
         </form>

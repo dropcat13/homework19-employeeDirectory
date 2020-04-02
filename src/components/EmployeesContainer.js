@@ -6,6 +6,7 @@ import Card from "./Card";
 import EmployeeDetails from "./EmployeeDetails";
 import API from "../utils/API";
 import SearchForm from "./SearchForm";
+import Emoji from "./Emoji";
 import "./style.css"; 
 
 class EmployeesContainer extends Component {
@@ -15,7 +16,7 @@ class EmployeesContainer extends Component {
     search: ""
   };
 
-  // When this component mounts,
+  // When this component mounts, get API data and display
   componentDidMount() {
     API.getEmployees().then(res => {
       this.setState({ employees: res });
@@ -43,16 +44,14 @@ class EmployeesContainer extends Component {
       <div>
         <Container>
         <SearchForm
-      // value={this.state.search}
       handleInputChange={this.handleInputChange}
-      // handleFormSubmit={this.handleFormSubmit}
      />
           <Row>
             <Col size="md-12">
                 <Card>
                   <Row>
                     <Col size="md-1"><h5>Image</h5></Col>
-                    <Col size="md-2"><h5>Name  <span className="pointer p-2">💎</span></h5></Col>
+                    <Col size="md-2"><h5>Name <button onClick={this.handleFormSubmit} className="btn"><Emoji symbol="💎" /></button></h5></Col>
                     <Col size="md-3"><h5>Phone</h5></Col>
                     <Col size="md-3"><h5>Email</h5></Col>
                     <Col size="md-3"><h5>DOB</h5></Col>
