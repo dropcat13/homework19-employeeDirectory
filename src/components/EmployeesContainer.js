@@ -36,11 +36,20 @@ class EmployeesContainer extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    console.log("got here")
-    const sortedEmployees = this.state.employees.sort();
+    var employeeRecords = this.state.employees
+    for(let i=0;i<employeeRecords.length;i++){
+      for(let  j=0;j<employeeRecords.length;j++){
+        if(employeeRecords[i].name < employeeRecords[j].name){
+          var temp = employeeRecords[j];
+          employeeRecords[j]= employeeRecords[i];
+          employeeRecords[i] = temp
+        }
+      }
+    }
     this.setState({
-      "employees": sortedEmployees  
+      "employees": employeeRecords 
     });  
+    console.log(this.state.employees)
   };
 
   render() {
